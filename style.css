@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+  font-size: 5px;
+}
+
+.calc {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 500px; 
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: gray;
+}
+
+.row {
+  flex: 1;
+  display: flex;
+}
+
+.btn {
+  text-align: center;
+  padding: 20px;
+  margin: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  flex: 1;
+  transition: 0.07s;
+  font-size: 6rem;
+  background-color: white;
+}
+
+.btn:hover {
+  filter: invert(1);
+  scale: 1.07;
+}
+
+.display {
+  font-size: 8rem;
+  padding: 30px;
+  border-radius: 5px;
+  border: 1px solid black;
+  width: 100%;
+  background-color: antiquewhite;
+  margin: 5px;
+}
+
+.operator {
+  background-color: burlywood;
+}
