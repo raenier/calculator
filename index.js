@@ -24,6 +24,8 @@ function operate(num1, num2, operator) {
 
 const number_buttons = document.querySelectorAll('.btn.number');
 const display = document.querySelector('.display');
+const clear = document.querySelector('.btn.clr');
+const backspace = document.querySelector('.btn.bck');
 let current_display_string = '';
 
 number_buttons.forEach(btn => btn.addEventListener('click', (e) => {
@@ -38,3 +40,13 @@ number_buttons.forEach(btn => btn.addEventListener('click', (e) => {
   //update div display
   display.textContent = current_display_string;
 } ));
+
+clear.addEventListener('click', (e) => display.innerHTML = 0);
+backspace.addEventListener('click', (e) => {
+  text = display.innerHTML;
+  if(text.length <= 1) {
+     display.innerHTML = 0;
+   } else {
+     display.innerHTML = text.slice(0, -1);
+   }
+});
