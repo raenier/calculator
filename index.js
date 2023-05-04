@@ -22,17 +22,20 @@ function operate(num1, num2, operator) {
   return window[operator](num1, num2);
 }
 
+//button nodes
 const number_buttons = document.querySelectorAll('.btn.number');
 const display = document.querySelector('.display');
 const clear = document.querySelector('.btn.clr');
 const backspace = document.querySelector('.btn.bck');
+const dot = document.querySelector('.btn.dot');
+
 let current_display_string = '';
 
 number_buttons.forEach(btn => btn.addEventListener('click', (e) => {
   //get value of button
   input = e.target.innerHTML;
   //get current displayed string on div
-  current_display_string = (display.innerHTML == 0) ? '' : display.innerHTML;
+  current_display_string = (display.innerHTML == '0') ? '' : display.innerHTML;
   //limit input to 20 strings
   if(current_display_string.length == 20) { return };
   //concat button value to main string
@@ -49,4 +52,8 @@ backspace.addEventListener('click', (e) => {
    } else {
      display.innerHTML = text.slice(0, -1);
    }
+});
+
+dot.addEventListener('click', (_) => {
+  if(display.innerHTML.indexOf('.') == -1) { display.innerHTML += '.' };
 });
