@@ -31,6 +31,8 @@ number_buttons.forEach(btn => btn.addEventListener('click', (e) => {
   input = e.target.innerHTML;
   //get current displayed string on div
   current_display_string = (display.innerHTML == 0) ? '' : display.innerHTML;
+  //limit input to 20 strings
+  if(current_display_string.length == 20) { return };
   //concat button value to main string
   current_display_string += input;
   //update div display
