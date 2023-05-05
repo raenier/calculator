@@ -29,6 +29,7 @@ const clear = document.querySelector('.btn.clr');
 const backspace = document.querySelector('.btn.bck');
 const dot = document.querySelector('.btn.dot');
 const operators = document.querySelectorAll('.btn.operator');
+const equals = document.querySelector('.btn.equals');
 
 //Used for calculation
 let firstnumber = 0;
@@ -94,5 +95,17 @@ operators.forEach(op => op.addEventListener('click', (e) => {
     secondnumber = 0;
     for_clearance = true;
   }
-
 } ));
+
+equals.addEventListener('click', (e) => {
+  //store second number first
+  if(firstnumber) {
+    secondnumber = parseFloat(display.innerHTML);
+    res = operate(firstnumber, secondnumber, operator);
+    //Start new session
+    display.innerHTML = res;
+    firstnumber = 0;
+    operator = '';
+    secondnumber = 0;
+  }
+});
