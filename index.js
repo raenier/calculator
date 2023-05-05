@@ -50,7 +50,13 @@ number_buttons.forEach(btn => btn.addEventListener('click', (e) => {
   display.textContent = current_display_string;
 } ));
 
-clear.addEventListener('click', (e) => display.innerHTML = 0);
+clear.addEventListener('click', (e) => {
+  // start fresh
+  display.innerHTML = 0;
+  firstnumber = 0;
+  secondnumber = 0;
+  operator = '';
+});
 backspace.addEventListener('click', (e) => {
   text = display.innerHTML;
   if(text.length <= 1) {
