@@ -28,6 +28,12 @@ const display = document.querySelector('.display');
 const clear = document.querySelector('.btn.clr');
 const backspace = document.querySelector('.btn.bck');
 const dot = document.querySelector('.btn.dot');
+const operators = document.querySelectorAll('.btn.operator');
+
+//Used for calculation
+let firstnumber = 0;
+let secondnumber = 0;
+let operator = '';
 
 let current_display_string = '';
 
@@ -57,3 +63,22 @@ backspace.addEventListener('click', (e) => {
 dot.addEventListener('click', (_) => {
   if(display.innerHTML.indexOf('.') == -1) { display.innerHTML += '.' };
 });
+
+// Computation
+operators.forEach(op => op.addEventListener('click', (e) => {
+  //store current string
+  if(!firstnumber) {
+    firstnumber = parseFloat(display.innerHTML);
+    operator = e.target.getAttribute('value');
+  } else {
+    secondnumber = parseFloat(display.innerHTML);
+    //compute
+    res = operate(firstnumber, secondnumber, operator);
+    display.innerHTML = res;
+    //store operator and result/ reset second number
+    operator = e.target.getAttribute('value');
+    firstnumber = res;
+    secondnumber = 0;
+  }
+
+} ));
