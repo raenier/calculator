@@ -36,12 +36,19 @@ let secondnumber = 0;
 let operator = '';
 
 let current_display_string = '';
+let for_clearance = false;
 
 number_buttons.forEach(btn => btn.addEventListener('click', (e) => {
   //get value of button
   input = e.target.innerHTML;
   //get current displayed string on div
-  current_display_string = (display.innerHTML == '0') ? '' : display.innerHTML;
+  if(display.innerHTML == '0' || for_clearance) {
+    console.log(for_clearance);
+    for_clearance=false;
+    current_display_string = ''
+  } else {
+    current_display_string = display.innerHTML;
+  }
   //limit input to 20 strings
   if(current_display_string.length == 20) { return };
   //concat button value to main string
@@ -57,6 +64,7 @@ clear.addEventListener('click', (e) => {
   secondnumber = 0;
   operator = '';
 });
+
 backspace.addEventListener('click', (e) => {
   text = display.innerHTML;
   if(text.length <= 1) {
@@ -72,19 +80,19 @@ dot.addEventListener('click', (_) => {
 
 // Computation
 operators.forEach(op => op.addEventListener('click', (e) => {
-  //store current string
   if(!firstnumber) {
     firstnumber = parseFloat(display.innerHTML);
     operator = e.target.getAttribute('value');
+    for_clearance = true;
   } else {
     secondnumber = parseFloat(display.innerHTML);
-    //compute
     res = operate(firstnumber, secondnumber, operator);
     display.innerHTML = res;
     //store operator and result/ reset second number
     operator = e.target.getAttribute('value');
     firstnumber = res;
     secondnumber = 0;
+    for_clearance = true;
   }
 
 } ));
